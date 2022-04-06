@@ -15,6 +15,7 @@ import TrackItem from '../components/TrackItem';
 import { RouteParams } from '../navigation/RootNavigator';
 import { Playlist } from '../types/Playlist';
 import { Track } from '../types/Track';
+import { randomKeyGenerator } from '../utils';
 
 const PlaylistDetail: React.FC = () => {
   const [playlist, setPlaylist] = useState<Playlist>();
@@ -50,7 +51,7 @@ const PlaylistDetail: React.FC = () => {
       {playlist ? (
         <FlatList
           data={playlist.tracks}
-          keyExtractor={(track) => track.name}
+          keyExtractor={randomKeyGenerator}
           renderItem={renderItem}
           style={{ width: '100%' }}
           ItemSeparatorComponent={() => <Separator />}

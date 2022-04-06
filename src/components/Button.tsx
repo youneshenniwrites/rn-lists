@@ -15,7 +15,7 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
     <TouchableOpacity onPress={onPress}>
       <View
         style={[
-          { paddingHorizontal: 6, paddingVertical: 6, borderRadius: 2 },
+          { paddingHorizontal: 6, paddingVertical: 9, borderRadius: 2 },
           { backgroundColor: type === 'primary' ? 'purple' : 'blue' },
         ]}
       >
