@@ -1,10 +1,20 @@
 import { RouteProp, useRoute } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Text, StyleSheet } from 'react-native';
+import {
+  ActivityIndicator,
+  StyleSheet,
+  FlatList,
+  View,
+  Text,
+  ListRenderItem,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { API_KEY, getPlaylist } from '../api/music';
+import Separator from '../components/Separator';
+import TrackItem from '../components/TrackItem';
 import { RouteParams } from '../navigation/RootNavigator';
 import { Playlist } from '../types/Playlist';
+import { Track } from '../types/Track';
 
 const PlaylistDetail: React.FC = () => {
   const [playlist, setPlaylist] = useState<Playlist>();
@@ -18,10 +28,19 @@ const PlaylistDetail: React.FC = () => {
     });
   }, []);
 
+  const renderItem: ListRenderItem<Track> = ({ item }) => {
+    return <TrackItem key={item.name} track={item} />;
+  };
+
   return (
     <SafeAreaView style={styles.playlist}>
       {playlist ? (
-        <Text>{playlist.name}</Text>
+        <FlatList
+          data={playlist.tracks}
+          renderItem={renderItem}
+          style={{ width: '100%' }}
+          ItemSeparatorComponent={() => <Separator />}
+        />
       ) : (
         <ActivityIndicator size="large" color="black" />
       )}
@@ -34,7 +53,6 @@ export default PlaylistDetail;
 const styles = StyleSheet.create({
   playlist: {
     flex: 1,
-    height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
   },
