@@ -47,10 +47,6 @@ const Home: React.FC<HomeProps> = ({}) => {
     );
   };
 
-  const renderTrackItem: ListRenderItem<Track> = ({ item }) => (
-    <TrackItem track={item} type="small" />
-  );
-
   const renderItem: SectionListRenderItem<Playlist> = ({ item }) => {
     return (
       <>
@@ -68,6 +64,10 @@ const Home: React.FC<HomeProps> = ({}) => {
       </>
     );
   };
+
+  const renderTrackItem: ListRenderItem<Track> = ({ item }) => (
+    <TrackItem track={item} type="small" />
+  );
 
   return (
     <SafeAreaView style={styles.playlists}>

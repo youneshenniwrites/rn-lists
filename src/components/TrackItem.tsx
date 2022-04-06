@@ -4,7 +4,7 @@ import { Track } from '../types/Track';
 
 interface TrackItemProps {
   track: Track;
-  type: string;
+  type?: string;
 }
 
 const TrackItem: React.FC<TrackItemProps> = ({ track, type = 'normal' }) => {
@@ -22,7 +22,7 @@ const TrackItem: React.FC<TrackItemProps> = ({ track, type = 'normal' }) => {
           style={{ fontWeight: 'bold', textAlign: 'center', paddingBottom: 6 }}
           numberOfLines={1}
         >
-          {track.name.substring(0, 33)}
+          {track.name}
         </Text>
         <Text
           style={{ color: 'grey', fontWeight: '600', textAlign: 'center' }}
