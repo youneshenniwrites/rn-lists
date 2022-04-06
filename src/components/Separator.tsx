@@ -10,7 +10,7 @@ export default Separator;
 const styles = StyleSheet.create({
   separator: {
     height: 1,
-    backgroundColor: 'lightgrey',
+    backgroundColor: 'white',
     marginVertical: 12,
   },
 });

@@ -57,6 +57,10 @@ const PlaylistDetail: React.FC = () => {
           numColumns={2}
           ListHeaderComponent={<Header />}
           ListEmptyComponent={<EmptyState />}
+          onRefresh={() => console.log('refetch music')}
+          refreshing={false}
+          onEndReached={() => console.log('load more')}
+          onEndReachedThreshold={0.5}
         />
       ) : (
         <ActivityIndicator size="large" color="black" />
@@ -72,6 +76,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'lightgrey',
   },
   title: {
     fontSize: 16,
