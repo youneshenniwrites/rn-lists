@@ -40,6 +40,8 @@ const PlaylistDetail: React.FC = () => {
           renderItem={renderItem}
           style={{ width: '100%' }}
           ItemSeparatorComponent={() => <Separator />}
+          numColumns={2}
+          contentContainerStyle={{}}
         />
       ) : (
         <ActivityIndicator size="large" color="black" />
