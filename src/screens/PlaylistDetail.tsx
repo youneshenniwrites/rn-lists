@@ -29,19 +29,34 @@ const PlaylistDetail: React.FC = () => {
   }, []);
 
   const renderItem: ListRenderItem<Track> = ({ item }) => {
-    return <TrackItem key={item.name} track={item} />;
+    return <TrackItem track={item} />;
   };
+
+  const EmptyState = () => (
+    <View style={styles.playlist}>
+      <Text>No music found.</Text>
+    </View>
+  );
+
+  const Header = () => (
+    <View style={styles.playlist}>
+      <Text style={styles.title}>{playlist?.name}</Text>
+      <Text style={styles.subtitle}>{playlist?.description}</Text>
+    </View>
+  );
 
   return (
     <SafeAreaView style={styles.playlist}>
       {playlist ? (
         <FlatList
           data={playlist.tracks}
+          keyExtractor={(track) => track.name}
           renderItem={renderItem}
           style={{ width: '100%' }}
           ItemSeparatorComponent={() => <Separator />}
           numColumns={2}
-          contentContainerStyle={{}}
+          ListHeaderComponent={<Header />}
+          ListEmptyComponent={<EmptyState />}
         />
       ) : (
         <ActivityIndicator size="large" color="black" />
@@ -57,5 +72,16 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    padding: 12,
+  },
+  subtitle: {
+    fontSize: 14,
+    padding: 6,
+    fontWeight: '500',
+    color: 'grey',
   },
 });
